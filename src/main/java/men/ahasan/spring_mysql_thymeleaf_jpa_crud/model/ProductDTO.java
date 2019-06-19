@@ -1,35 +1,24 @@
 package men.ahasan.spring_mysql_thymeleaf_jpa_crud.model;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Size(min = 4, max = 30)
+public class ProductDTO {
+    @NotBlank
     private String name;
     @NotBlank
     private String brand;
     @NotBlank
     private String madein;
-    @NotNull
-    private Float price;
+    @NotBlank
+    private String price;
 
-    public Product() {
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Product getProduct() {
+        Product product = new Product();
+        product.setName(name);
+        product.setBrand(brand);
+        product.setMadein(madein);
+        product.setPrice(Float.valueOf(price));
+        return product;
     }
 
     public String getName() {
@@ -56,11 +45,11 @@ public class Product {
         this.madein = madein;
     }
 
-    public Float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
